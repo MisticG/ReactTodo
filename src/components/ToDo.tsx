@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { User } from '../App';
 
-class Todo extends Component {
+interface Props {
+    todos: User[]
+}
+
+class ToDo extends Component<Props, {}> {
+    
   render() {
-    return (
-      <div>
-        <h1>Todos</h1>
-      </div>
-    );
+   return this.props.todos.map((todo) => (
+       <h3>{todo.title}</h3>
+   ))
   }
 }
 
-export default Todo;
+export default ToDo;
