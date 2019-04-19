@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { User } from '../App';
+import ToDoItem from './ToDoItem';
 
 interface Props {
-    todos: User[]
+  todos: User[]
 }
 
 class ToDo extends Component<Props, {}> {
@@ -10,9 +11,9 @@ class ToDo extends Component<Props, {}> {
   private get todoList() {
     const todoes = this.props.todos.map((todo) =>{
       return (
-        <li key={todo.id}>
-            <h3>{todo.title}</h3>
-        </li>
+        <ToDoItem key={todo.id} 
+        todo={todo}
+        />
       )    
     })
     return todoes
@@ -20,9 +21,7 @@ class ToDo extends Component<Props, {}> {
     
   render() {
     return (
-      <ul>
-        {this.todoList}
-      </ul>
+        <h2>{this.todoList}</h2>
     )
   }
 }
