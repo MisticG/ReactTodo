@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import ToDo from './components/ToDo'
+import Header from './components/layout/Header'
 
 interface State {
   todos: {
@@ -56,6 +57,7 @@ export default class App extends React.Component<{}, State> {
   render() {
     return (
       <div className="App">
+        <Header/>
         <ToDo todos={this.state.todos}
         markComplete = {this.markComplete}
         deleteTodo = {this.deleteTodo}
