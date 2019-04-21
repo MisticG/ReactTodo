@@ -1,20 +1,28 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 
+interface Props {
+    addTodo: (title: string) => void;
+}
 
-
-export default class AddTodo extends React.Component {
+export default class AddTodo extends React.Component<Props, {}> {
     state = {
         title: ''
     }
 
         //Funktion som uppdaterar state direkt (component level state) då man skriver i inputfältet.
         //Detta sker via ett event (changeEvent)
-    onChange = (e: ChangeEvent<HTMLInputElement>) => 
+    onChange = (e: ChangeEvent<HTMLInputElement>) =>
     this.setState({ title: e.target.value });
-
+    
+    onSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        this.props.addTodo(this.state.title);
+        this.setState({ title: ''});
+    }
+    
     render() {
         return (
-            <form style={{ display: 'flex' }}> 
+            <form onSubmit={this.onSubmit} style={{ display: 'flex' }}> 
                 <input
                 type="text" 
                 name="title" 
