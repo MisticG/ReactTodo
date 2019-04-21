@@ -7,9 +7,11 @@ interface State {
     id: number,
     title: string,
     completed: boolean
+    //[]på slutet betyder att todos läggs till/är en array.
   }[];
 }
 
+//<{}, State> = Tom props objekt och en State med typningar.
 export default class App extends React.Component<{}, State> {
   state = {
       
@@ -34,12 +36,15 @@ export default class App extends React.Component<{}, State> {
 
 
   markComplete = (id: number) => {
-    this.setState({todos: this.state.todos.map(todo => {
-      if(todo.id === id) {
-      todo.completed = !todo.completed;
-    }
-    return todo;
-  }) });
+    this.setState(
+      {todos: this.state.todos.map(todo => {
+        if(todo.id === id) {
+        todo.completed = !todo.completed;
+        }
+        return todo;
+        }) 
+      }
+    );
   
   }
   

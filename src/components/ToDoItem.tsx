@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 interface TodoItemProps {
     todo: {
@@ -13,7 +12,7 @@ interface TodoItemProps {
 
 export default class ToDoItem extends Component<TodoItemProps,{}> {
 
-    static propTypes: { todo: PropTypes.Validator<object>; };
+    //static propTypes: { todo: PropTypes.Validator<object>; };
 
     getStyle = () => {
         return {
@@ -28,6 +27,7 @@ export default class ToDoItem extends Component<TodoItemProps,{}> {
 
     render() {
 
+        //destructuring props
         const {id, title} = this.props.todo;
         return (
             <div style={this.getStyle()}>
@@ -38,11 +38,6 @@ export default class ToDoItem extends Component<TodoItemProps,{}> {
                     { title }
                 </p>
             </div>
-
         )
     }
-}
-
-const itemStyle ={
-    backgroundColor: '#f4f4f4'
 }

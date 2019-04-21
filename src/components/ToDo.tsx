@@ -7,6 +7,7 @@ interface Props {
     id: number,
     title: string,
     completed: boolean
+    //[]på slutet betyder att todos läggs till/är en array.
   }[];
 
   markComplete: (id: number) => void;
@@ -14,7 +15,7 @@ interface Props {
 
 export default class ToDo extends React.Component<Props, {}> {
   
-  static propTypes: { todos: PropTypes.Validator<any[]>; }
+  //static propTypes: { todos: PropTypes.Validator<any[]>; }
     
   render() {
     return (
