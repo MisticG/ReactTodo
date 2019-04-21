@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, CSSProperties } from 'react';
 
 interface TodoItemProps {
     todo: {
@@ -8,6 +8,7 @@ interface TodoItemProps {
     };
 
     markComplete: (id:number) => void;
+    deleteTodo: (id: number) => void;
 }
 
 export default class ToDoItem extends Component<TodoItemProps,{}> {
@@ -36,8 +37,20 @@ export default class ToDoItem extends Component<TodoItemProps,{}> {
                     onChange={this.props.markComplete.bind
                     (this, id)} /> {' '}
                     { title }
+                    <button onClick={this.props.deleteTodo.bind(this, id)}
+                    style={btnStyle}>X</button>
                 </p>
             </div>
         )
     }
+}
+
+const btnStyle: CSSProperties = {
+    background: 'green',
+    color: 'black',
+    border: 'none',
+    padding: '5px 8px',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    float: 'right'
 }

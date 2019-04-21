@@ -1,6 +1,5 @@
 import React from 'react';
 import ToDoItem from './ToDoItem';
-import PropTypes from 'prop-types';
 
 interface Props {
   todos: {
@@ -11,6 +10,7 @@ interface Props {
   }[];
 
   markComplete: (id: number) => void;
+  deleteTodo: (id: number) => void;
 }
 
 export default class ToDo extends React.Component<Props, {}> {
@@ -19,11 +19,12 @@ export default class ToDo extends React.Component<Props, {}> {
     
   render() {
     return (
-        this.props.todos.map((todo) => (
-          <ToDoItem key={todo.id} 
-          todo={todo} 
-          markComplete={this.props.markComplete} />
-        ))
+      this.props.todos.map((todo) => (
+        <ToDoItem key={todo.id} 
+        todo={todo} 
+        markComplete={this.props.markComplete}
+        deleteTodo={this.props.deleteTodo} />
+      ))
     )
   }
 }

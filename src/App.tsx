@@ -34,7 +34,6 @@ export default class App extends React.Component<{}, State> {
     ]
   }
 
-
   markComplete = (id: number) => {
     this.setState(
       {todos: this.state.todos.map(todo => {
@@ -45,7 +44,13 @@ export default class App extends React.Component<{}, State> {
         }) 
       }
     );
-  
+  }
+
+  //filter metod för att filtrer bort de som inte är deletade
+  deleteTodo = (id: number) => {
+    this.setState({ todos: [...this.state.todos.filter(todo => 
+      todo.id !== id)] 
+    })
   }
   
   render() {
@@ -53,6 +58,7 @@ export default class App extends React.Component<{}, State> {
       <div className="App">
         <ToDo todos={this.state.todos}
         markComplete = {this.markComplete}
+        deleteTodo = {this.deleteTodo}
         />
       </div>
     );
