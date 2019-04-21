@@ -1,29 +1,28 @@
-import React, { Component } from 'react';
-import { User } from '../App';
+import React from 'react';
 import ToDoItem from './ToDoItem';
+import PropTypes from 'prop-types';
 
 interface Props {
-  todos: User[]
+  todos: {
+    id: number,
+    title: string,
+    completed: boolean
+  }[];
+
+  markComplete: (id: number) => void;
 }
 
-class ToDo extends Component<Props, {}> {
-
-  private get todoList() {
-    const todoes = this.props.todos.map((todo) =>{
-      return (
-        <ToDoItem key={todo.id} 
-        todo={todo}
-        />
-      )    
-    })
-    return todoes
-  }
+export default class ToDo extends React.Component<Props, {}> {
+  
+  static propTypes: { todos: PropTypes.Validator<any[]>; }
     
   render() {
     return (
-        <h2>{this.todoList}</h2>
+        this.props.todos.map((todo) => (
+          <ToDoItem key={todo.id} 
+          todo={todo} 
+          markComplete={this.props.markComplete} />
+        ))
     )
   }
 }
-
-export default ToDo;

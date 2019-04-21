@@ -1,27 +1,42 @@
 import React, { Component } from 'react';
-import { User } from '../App';
+import PropTypes from 'prop-types';
 
-interface Props {
-    todo: User
+interface TodoItemProps {
+    todo: {
+        id: number,
+        title: string,
+        completed: boolean
+    };
+
+    markComplete: (id:number) => void;
 }
 
-export class ToDoItem extends Component<Props,{}> {
+export default class ToDoItem extends Component<TodoItemProps,{}> {
+
+    static propTypes: { todo: PropTypes.Validator<object>; };
 
     getStyle = () => {
-        if(this.props.todo.completed) {
-            return {
-                textDecoration: 'line-through'
-            }
-        } else {
-            return {
-                textDecoration: 'none'
-            }
+        return {
+            background: '#f4f4f4',
+            padding: '10px',
+            borderBottom: '1px #ccc dotted',
+            textDecoration: this.props.todo.completed ? 
+            'line-through' : 
+            'none'
         }
     }
+
     render() {
+
+        const {id, title} = this.props.todo;
         return (
             <div style={this.getStyle()}>
-                <p>{this.props.todo.title}</p>
+                <p>
+                    <input type="checkbox" 
+                    onChange={this.props.markComplete.bind
+                    (this, id)} /> {' '}
+                    { title }
+                </p>
             </div>
 
         )
@@ -31,5 +46,3 @@ export class ToDoItem extends Component<Props,{}> {
 const itemStyle ={
     backgroundColor: '#f4f4f4'
 }
-
-export default ToDoItem
