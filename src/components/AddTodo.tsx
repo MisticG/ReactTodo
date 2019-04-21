@@ -1,4 +1,4 @@
-import React, { CSSProperties, ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 
 
 
